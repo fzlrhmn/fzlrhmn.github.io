@@ -1,0 +1,73 @@
+FORMAT: 1A
+HOST: http://crm-api-dev.smartcity.jakarta.go.id/
+
+# Call Center 112
+
+Kumpulan endpoint API untuk input data Call Center 112 dan broadcast push notification ke aplikasi sampai level petugas. 
+
+## Post Data Baru [/callcenter]
+
+### Input Laporan Baru [POST]
+
+> - Input Data Laporan Baru Menggunakan JSON
+> - Setelah Data Baru Masuk, Akan Dikirimkan Push Notification ke User Terkait
+> - Untuk SKPD, menggunakan identifier berikut :
+> - AGD : 58
+> - DINAS PERHUBUNGAN : 3710
+> - DINAS PENANGGULANGAN KEBAKARAN DAN PENYELAMATAN : 115
+> - SATUAN POLISI PAMONG PRAJA : 122
+> - POLDA METRO JAYA : ?
+
++ Parameters
+    + ticket (required, string, `QGY2016092213261`) ... Tiket Laporan Call Center 112.
+    + status (required, string, `Open, On Progress, Complete`) ... String dari nama status.
+    + skpd (required, array, `[58,3710,115,122]`) ... Array identifier dinas dari CROP / CRM. 
+    + latitude (required, string, `-6.1234567`) ... Angka float dari latitude.
+    + longitude (required, string, `106.1234567`) ... Angka float dari longitude.
+    + category (required, string, `Emergency, Non - Emergency`) ... String category dari Call Center 112.
+    + subcategory (required, string, `Kebakaran`) ... String subcategory dari Call Center 112.
+    + location (optional, string, `Jalan Medan Merdeka Barat`) ... String alamat laporan dari Call Center 112.
+    + location_typo (optional, string, `Jalan Medan Merdeka Barat deket pos satpam`) ... String alamat laporan dari Pelapor Call Center 112.
+    + city (required, string, `3171,3172,3173,3174`) ... Angka identifier kota dari CROP / CRM.
+    + kecamatan (required, string, `31711234`) ... Angka identifier kecamatan dari CROP / CRM.
+    + created_date (optional, string, `2016-09-07 17:51:21`) ... Tanggal laporan masuk.
+
++ Request (application/json)
+
+        {
+            "ticket" : "QGY2016092213263",
+            "latitude" : -6.144347,
+            "longitude" : 106.750710,
+            "skpd" : [58,3710,58],
+            "status" : "open",
+            "category" : "emergency",
+            "subcategory" : "Kebakaran",
+            "location" : "jalan Medan Merdeka Selatan no 8-9, Gambir, Jakarta Pusat",
+            "location_typo" : "Jalan Medan Merdeka Selatan Dekat Balai Kota",
+            "city" : 3173,
+            "kecamatan" : 3173080,
+            "created_date" : "2016-09-29 12:00:00"
+        }
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "status": "success",
+                "message": "Success input data"
+            }
+
++ Response 400 (application/json)
+    + Body
+    
+            {
+                "status": "error",
+                "message": "Duplicate Entry"
+            }
+    
++ Response 400 (application/json)
+    + Body
+    
+            {
+                "status" : "error on post data"
+            }
