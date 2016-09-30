@@ -71,3 +71,53 @@ Kumpulan endpoint API untuk input data Call Center 112 dan broadcast push notifi
             {
                 "status" : "error on post data"
             }
+
+## Post Update Progress [/callcenter]
+
+### Input Progress Baru [POST]
+
+> - Input Data Progress Laporan Baru Menggunakan JSON
+> - Untuk SKPD, menggunakan identifier berikut :
+> - AGD : 58
+> - DINAS PERHUBUNGAN : 3710
+> - DINAS PENANGGULANGAN KEBAKARAN DAN PENYELAMATAN : 115
+> - SATUAN POLISI PAMONG PRAJA : 122
+> - POLDA METRO JAYA : ?
+
++ Parameters
+    + ticket (required, string, `QGY2016092213261`) ... Tiket Laporan Call Center 112.
+    + latitude (optional, string, `-6.1234567`) ... Angka float dari latitude.
+    + longitude (optional, string, `106.1234567`) ... Angka float dari longitude.
+    + skpd (required, array, `[58,3710,115,122]`) ... Array identifier dinas dari CROP / CRM.
+    + user (optional, array, `2343497`) ... Array identifier dinas dari CROP / CRM.
+    + status (required, string, `Open, On Progress, Complete`) ... String dari nama status.
+    + message (optional, string, `Lorem Ipsum`) ... String dari message / pesan.
+    + update_source (optional, string, `HT Trunking`) ... String dari message / pesan.
+
++ Request (application/json)
+
+        {
+            "ticket" : "QGY2016092213259",
+            "latitude" : -6.1234567,
+            "longitude" : 106.1234567,
+            "skpd" : 3710,
+            "user" : 2343497,
+            "status" : "on progress",
+            "message" : "Sedang perjalanan",
+            "update_source" : "HT Trunking"
+        }
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "status": "success",
+                "message": "Success input data"
+            }
+    
++ Response 400 (application/json)
+    + Body
+    
+            {
+                "status" : "error on post data"
+            }
