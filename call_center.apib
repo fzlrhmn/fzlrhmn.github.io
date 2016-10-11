@@ -91,6 +91,7 @@ Kumpulan endpoint API untuk input data Call Center 112 dan broadcast push notifi
     + skpd (required, array, `[58,3710,115,122]`) ... Array identifier dinas dari CROP / CRM.
     + user (optional, array, `2343497`) ... Array identifier dinas dari CROP / CRM.
     + status (required, string, `Open, On Progress, Closed`) ... String dari nama status.
+    + substatus (required, string, `Preparation, On Going, On process, Resolved, Closed, Cancel`) ... String dari nama substatus.
     + message (optional, string, `Lorem Ipsum`) ... String dari message / pesan.
     + update_source (optional, string, `HT Trunking`) ... String dari message / pesan.
 
@@ -102,6 +103,7 @@ Kumpulan endpoint API untuk input data Call Center 112 dan broadcast push notifi
             "skpd" : 3710,
             "user" : 2343497,
             "status" : "on progress",
+            "substatus" : "Preparation",
             "message" : "Sedang perjalanan",
             "update_source" : "HT Trunking"
         }
