@@ -11,13 +11,7 @@ Kumpulan endpoint API untuk input data Call Center 112 dan broadcast push notifi
 
 > - Input Data Laporan Baru Menggunakan JSON
 > - Setelah Data Baru Masuk, Akan Dikirimkan Push Notification ke User Terkait
-> - Untuk SKPD, menggunakan identifier berikut :
-> - AGD : 58
-> - DINAS PERHUBUNGAN : 3710
-> - DINAS PENANGGULANGAN KEBAKARAN DAN PENYELAMATAN : 115
-> - SATUAN POLISI PAMONG PRAJA : 122
-> - BADAN PENANGGULANGAN BENCANA DAERAH : 11
-> - POLDA METRO JAYA : 3749
+> - Untuk SKPD, menggunakan id dari endpoint /callcenter/skpd
 
 + Parameters
     + ticket (required, string, `QGY2016092213261`) ... Tiket Laporan Call Center 112.
@@ -78,20 +72,14 @@ Kumpulan endpoint API untuk input data Call Center 112 dan broadcast push notifi
 ### Input Progress Baru [POST]
 
 > - Input Data Progress Laporan Baru Menggunakan JSON
-> - Untuk SKPD, menggunakan identifier berikut :
-> - AGD : 58
-> - DINAS PERHUBUNGAN : 3710
-> - DINAS PENANGGULANGAN KEBAKARAN DAN PENYELAMATAN : 115
-> - SATUAN POLISI PAMONG PRAJA : 122
-> - BADAN PENANGGULANGAN BENCANA DAERAH : 11
-> - POLDA METRO JAYA : 3749
+> - Untuk SKPD, menggunakan id dari endpoint /callcenter/skpd
 
 + Parameters
     + ticket (required, string, `QGY2016092213261`) ... Tiket Laporan Call Center 112.
     + latitude (optional, string, `-6.1234567`) ... Angka float dari latitude.
     + longitude (optional, string, `106.1234567`) ... Angka float dari longitude.
     + skpd (required, array, `[58,3710,115,122]`) ... Array identifier dinas dari CROP / CRM.
-    + user (optional, array, `2343497`) ... Array identifier dinas dari CROP / CRM.
+    + user (optional, string, `subagio`) ... String dari username.
     + status (required, string, `Open, On Progress, Closed`) ... String dari nama status.
     + substatus (required, string, `Preparation, On Going, On process, Resolved, Closed, Cancel`) ... String dari nama substatus.
     + message (optional, string, `Lorem Ipsum`) ... String dari message / pesan.
